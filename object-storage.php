@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Uso do Object Storage como conjuntos
+ */
+
 require __DIR__ . "/Course.php";
 require __DIR__ . "/Student.php";
 
