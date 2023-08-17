@@ -4,9 +4,9 @@
  * Pilha: conceito LIFO - Last In, first out
  */
 
-require __DIR__ . "/Curso.php";
+require __DIR__ . "/Course.php";
 
-$course = new Curso("Collections com PHP");
+$course = new Course("Collections com PHP");
 $course->addChange("Primeira aula criada");
 $course->addChange("Segunda aula modificada");
 $course->addChange("Terceira aula concluída");

@@ -4,9 +4,9 @@
  * Pilha: conceito FIFO - First In, first out
  */
 
-require __DIR__ . "/Curso.php";
+require __DIR__ . "/Course.php";
 
-$course = new Curso("SOLID com PHP");
+$course = new Course("SOLID com PHP");
 
 $course->addWaitingStudent("Danilo");
 $course->addWaitingStudent("Samara");
