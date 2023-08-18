@@ -1,6 +1,8 @@
 <?php
 
-class Student
+use Ds\Hashable;
+
+class Student implements Hashable
 {
     private string $name;
 
@@ -16,5 +18,20 @@ class Student
     {
         return $this->name;
     }
+
+    public function equals($obj): bool
+    {
+        if (!$obj instanceof Student) {
+            return false;
+        }
+
+        return $obj->name === $this->name;
+    }
+
+    public function hash()
+    {
+        return $this->name;
+    }
+
 
 }

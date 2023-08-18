@@ -1,16 +1,20 @@
 <?php
 
+use Ds\Queue;
+use Ds\Set;
+use Ds\Stack;
+
 class Course
 {
-    private SplStack $changes;
-    private SplQueue $waitingList;
-    private SplObjectStorage $registeredStudents;
+    private Stack $changes;
+    private Queue $waitingList;
+    private Set $registeredStudents;
 
     public function __construct(string $name)
     {
-        $this->changes = new SplStack();
-        $this->waitingList = new SplQueue();
-        $this->registeredStudents = new SplObjectStorage();
+        $this->changes = new Stack();
+        $this->waitingList = new Queue();
+        $this->registeredStudents = new Set();
     }
 
     public function addChange(string $change): void
@@ -18,27 +22,32 @@ class Course
         $this->changes->push($change);
     }
 
-    public function getChanges(): SplDoublyLinkedList
+    public function undoChange(): void
     {
-        return clone $this->changes;
+        $this->changes->pop();
+    }
+
+    public function getChanges(): Stack
+    {
+        return clone $this->changes->copy();
     }
 
     public function addWaitingStudent(string $student): void
     {
-        $this->waitingList->enqueue($student);
+        $this->waitingList->push($student);
     }
 
-    public function getWaitingList(): SplQueue
+    public function getWaitingList(): Queue
     {
         return $this->waitingList;
     }
 
     public function registerStudent(Student $student): void
     {
-        $this->registeredStudents->attach($student);
+        $this->registeredStudents->add($student);
     }
 
-    public function getRegisteredStudents(): SplObjectStorage
+    public function getRegisteredStudents(): Set
     {
         return clone $this->registeredStudents;
     }
